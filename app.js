@@ -24,7 +24,7 @@ var dishRouter = require('./routes/dishRouter');
 
 
 var app = express();
-// Secure traffic only
+/*
 app.all('*', function(req, res, next){
     console.log('req start: ',req.secure, req.hostname, req.url, app.get('port'));
   if (req.secure) {
@@ -33,7 +33,7 @@ app.all('*', function(req, res, next){
 
  res.redirect('https://'+req.hostname+':'+app.get('secPort')+req.url);
 });
-
+*/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
