@@ -65,8 +65,8 @@ scrapeRouter.route('/notices')
         console.log(i);
     })
 
-    setTimeout(function(){ console.log(notices) }, 3000);
-    setTimeout(function(){ res.json(notices) }, 3000);
+    setTimeout(function(){ console.log(notices) }, 10000);
+    setTimeout(function(){ res.json(notices) }, 10000);
 })
 
 scrapeRouter.route('/result/:rollNo')
