@@ -46,6 +46,7 @@ scrapeRouter.route('/notices')
         if(err)
             throw err;
         var $ = cheerio.load(body);
+        var i=0;
         $('.table-box td a').each(function(){
             var content = $(this);
             var contentText = content.text();
@@ -55,11 +56,17 @@ scrapeRouter.route('/notices')
                     notice: contentText,
                     url: urlText
                 })
+                i++;
+                if(i==20)
+                    return false;
             }
         });
         
+        console.log(i);
     })
-    setTimeout(function(){ res.json(notices) }, 5000);
+
+    setTimeout(function(){ console.log(notices) }, 3000);
+    setTimeout(function(){ res.json(notices) }, 3000);
 })
 
 scrapeRouter.route('/result/:rollNo')
