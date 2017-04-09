@@ -195,11 +195,11 @@ angular.module('formExample', [])
 	        	}
 	        }
 	    };
-      
+
 	    $scope.sendTimeTable = function () {
 
 
-		        $http.post('http://localhost:3000/timetable', {
+		        $http.post('https://agile-hamlet-82527.herokuapp.com/timetable', {
     
     "sem": $scope.timetable.sem,
     "group": $scope.timetable.group,
@@ -456,7 +456,7 @@ angular.module('formExample', [])
     $scope.sendAnnouncement = function () {
 
 
-            $http.post('http://localhost:3000/announcement', {
+            $http.post('https://agile-hamlet-82527.herokuapp.com/announcement', {
               "name":$scope.announcement.name,
               "sem":$scope.announcement.sem,
               "group":$scope.announcement.group,
