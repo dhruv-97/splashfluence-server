@@ -59,7 +59,7 @@ scrapeRouter.route('/notices')
         });
         
     })
-    setTimeout(function(){ res.json(notices) }, 3000);
+    setTimeout(function(){ res.json(notices) }, 5000);
 })
 
 scrapeRouter.route('/result/:rollNo')
