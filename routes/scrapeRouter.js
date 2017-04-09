@@ -39,7 +39,7 @@ scrapeRouter.route('/')
     res.send('Welcome to scrape world');
 })
 
-timetableRouter.route('/notices')
+scrapeRouter.route('/notices')
 .get(function (req, res, next) {
     var notices=[];
     request('http://ipu.ac.in/exam_notices.php', function(err,resp,body){
@@ -59,10 +59,10 @@ timetableRouter.route('/notices')
         });
         
     })
-    setTimeout(function(){ res.json(notices) }, 1000);
+    setTimeout(function(){ res.json(notices) }, 2000);
 })
 
-timetableRouter.route('/result/:rollNo')
+scrapeRouter.route('/result/:rollNo')
 .get(function (req, res, next) {
     var form = new FormData();
     var marks =[];
@@ -140,10 +140,10 @@ timetableRouter.route('/result/:rollNo')
 
         });
     });
-    setTimeout(function(){ res.json(marks) }, 1000);
+    setTimeout(function(){ res.json(marks) }, 3000);
 })
 
-timetableRouter.route('/faculty')
+scrapeRouter.route('/faculty')
 .get(function (req, res, next) {
     var faculty=[];
     request('http://cse.mait.ac.in/index.php/people/faculty', function(err,resp,body){
@@ -179,7 +179,7 @@ timetableRouter.route('/faculty')
     })
     setTimeout(function(){ res.json(faculty) }, 1000);
 })
-timetableRouter.route('/info/:rollNo')
+scrapeRouter.route('/info/:rollNo')
 .get(function (req, res, next) {
     var form = new FormData();
     var infoText='';
@@ -204,7 +204,7 @@ timetableRouter.route('/info/:rollNo')
             infoText=info.text();
         });
     });
-    setTimeout(function(){ res.send(info) }, 1000);
+    setTimeout(function(){ res.send(infoText) }, 3000);
 })
 
 module.exports=scrapeRouter;
