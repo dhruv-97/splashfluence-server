@@ -1,3 +1,7 @@
+function jsUcfirst(string) 
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 angular.module('formExample', [])
 	.config(function ($httpProvider) {
 	  $httpProvider.defaults.headers.common = {};
@@ -197,7 +201,7 @@ angular.module('formExample', [])
 	    };
 
 	    $scope.sendTimeTable = function () {
-
+            $scope.timetable.sem=jsUcfirst($scope.timetable.sem);
 
 		        $http.post('https://agile-hamlet-82527.herokuapp.com/timetable', {
     
@@ -454,7 +458,7 @@ angular.module('formExample', [])
       message:''
     };
     $scope.sendAnnouncement = function () {
-
+            $scope.announcement.sem=jsUcfirst($scope.announcement.sem);
 
             $http.post('https://agile-hamlet-82527.herokuapp.com/announcement', {
               "name":$scope.announcement.name,

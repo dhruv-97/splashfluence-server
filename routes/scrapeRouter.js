@@ -65,8 +65,8 @@ scrapeRouter.route('/notices')
         console.log(i);
     })
 
-    setTimeout(function(){ console.log(notices) }, 10000);
-    setTimeout(function(){ res.json(notices) }, 10000);
+    setTimeout(function(){ console.log(notices) }, 5000);
+    setTimeout(function(){ res.json(notices) }, 5000);
 })
 
 scrapeRouter.route('/result/:rollNo')
@@ -190,6 +190,12 @@ scrapeRouter.route('/info/:rollNo')
 .get(function (req, res, next) {
     var form = new FormData();
     var infoText='';
+    var infoj={
+        roll: req.params.rollNo,
+        name: '',
+        college:'',
+        stream:''
+    };
     form.append('Roll_No', req.params.rollNo);
     form.submit('http://ipuresult.com/index.php', function(err, res) {
       // res – response object (http.IncomingMessage)  // 
@@ -209,9 +215,13 @@ scrapeRouter.route('/info/:rollNo')
             var $ = cheerio.load(response.body);
             var info =$('table tr:nth-child(1)>td');
             infoText=info.text();
+            var i= infoText.indexOf('College:');
+            infoj.name= infoText.substring(40,i-1);
+            infoj.college=infoText.substring(i+11,116);
+            infoj.stream=infoText.substring(126,infoText.length);
         });
     });
-    setTimeout(function(){ res.send(infoText) }, 3000);
+    setTimeout(function(){ res.json(infoj) }, 5000);
 })
 
 module.exports=scrapeRouter;
