@@ -155,8 +155,8 @@ scrapeRouter.route('/result/:rollNo')
         });
         //console.log(score);
         //console.log(j);
-        final.percentage=score/j;
-        final.creditp=score2/tcredit;
+        final.percentage=(score/j).toFixed(2);
+        final.creditp=(score2/tcredit).toFixed(2);
         final.marks=marks;
 
         });
