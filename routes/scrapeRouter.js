@@ -75,6 +75,7 @@ scrapeRouter.route('/result/:rollNo')
     var marks=[];
     var final={
             percentage: 100,
+            creditp: 100,
             marks: []
     };
     var infoText='';
@@ -111,7 +112,7 @@ scrapeRouter.route('/result/:rollNo')
             var sem =$('table>tr:nth-child(0)>th>div');
             semText=sem.text();
             console.log(semText);
-            var i=0,score=0,j=0;
+            var i=0,score=0,score2=0,iscore,j=0,tcredit=0;
             $('.tftable td').each(function(){
                 var content = $(this);
                 var contentText = content.text();
@@ -128,12 +129,15 @@ scrapeRouter.route('/result/:rollNo')
                     mark.external=contentText;
                 else if(i==5){
                     mark.total=contentText;
-                    score+=parseInt(contentText);
+                    iscore=parseInt(contentText);
+                    score+=iscore;
                     j++;
                 }
                 else if(i==6){
                     mark.credits=contentText;
                     //console.log(mark);
+                    tcredit+=parseInt(contentText);
+                    score2+=iscore*parseInt(contentText);
                     marks.push(mark);
                     mark ={
                         subjectID:'',
@@ -152,6 +156,7 @@ scrapeRouter.route('/result/:rollNo')
         //console.log(score);
         //console.log(j);
         final.percentage=score/j;
+        final.creditp=score2/tcredit;
         final.marks=marks;
 
         });
