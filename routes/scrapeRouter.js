@@ -72,7 +72,11 @@ scrapeRouter.route('/notices')
 scrapeRouter.route('/result/:rollNo')
 .get(function (req, res, next) {
     var form = new FormData();
-    var marks =[];
+    var marks=[];
+    var final={
+            percentage: 100,
+            marks: []
+    };
     var infoText='';
     var semText='';
     form.append('Roll_No', req.params.rollNo);
@@ -107,7 +111,7 @@ scrapeRouter.route('/result/:rollNo')
             var sem =$('table>tr:nth-child(0)>th>div');
             semText=sem.text();
             console.log(semText);
-            var i=0;
+            var i=0,score=0,j=0;
             $('.tftable td').each(function(){
                 var content = $(this);
                 var contentText = content.text();
@@ -122,8 +126,11 @@ scrapeRouter.route('/result/:rollNo')
                     mark.internal=contentText;
                 else if(i==4)
                     mark.external=contentText;
-                else if(i==5)
+                else if(i==5){
                     mark.total=contentText;
+                    score+=parseInt(contentText);
+                    j++;
+                }
                 else if(i==6){
                     mark.credits=contentText;
                     //console.log(mark);
@@ -142,12 +149,14 @@ scrapeRouter.route('/result/:rollNo')
                 i++;
 
         });
-        
-        
+        //console.log(score);
+        //console.log(j);
+        final.percentage=score/j;
+        final.marks=marks;
 
         });
     });
-    setTimeout(function(){ res.json(marks) }, 3000);
+    setTimeout(function(){ res.json(final) }, 3000);
 })
 
 scrapeRouter.route('/faculty')
