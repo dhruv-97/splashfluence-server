@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var markSchema = new Schema({
     subjectID:  {
-        type: Number,
+        type: String,
         required: true
     },
     subjectCode:  {
@@ -14,21 +14,21 @@ var markSchema = new Schema({
         required: true
     },
     internal: {
-        type: Number,
+        type: String,
         required: true
 
     },
     external: {
-        type: Number,
+        type: String,
         required: true
     },
     total: {
-        type: Number,
+        type: String,
         required: true
 
     },
     credits:{
-        type: Number,
+        type: String,
         required: true
     }
     
@@ -40,11 +40,11 @@ var resultSchema = new Schema({
         unique: true
     },
     percentage: {
-        type: Number,
+        type: String,
         required: true
     },
     creditp: {
-        type: Number,
+        type: String,
         required: true
     },
     marks: [markSchema]
