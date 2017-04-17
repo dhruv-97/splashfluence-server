@@ -79,7 +79,7 @@ scrapeRouter.route('/result/:rollNo')
 .get(function (req, res, next) {
     results.findOne({"roll":req.params.rollNo},function (err, result) {
         if (err) next(err);
-        if(result.length!=0){
+        if(result!=null){
             res.json(result);
             console.log('if invoked');
         }
