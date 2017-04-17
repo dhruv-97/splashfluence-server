@@ -77,7 +77,7 @@ scrapeRouter.route('/notices')
 
 scrapeRouter.route('/result/:rollNo')
 .get(function (req, res, next) {
-    results.find({"roll":req.params.rollNo},function (err, result) {
+    results.findOne({"roll":req.params.rollNo},function (err, result) {
         if (err) next(err);
         if(result.length!=0){
             res.json(result);
