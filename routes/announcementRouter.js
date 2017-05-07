@@ -20,6 +20,7 @@ announcementRouter.route('/')
 
 .post(function (req, res, next) {
     Announcements.create(req.body, function (err, announcement) {
+        console.log(req.body);
         if (err) next(err);
         console.log('Announcement created!');
         var id = announcement._id;

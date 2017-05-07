@@ -7,11 +7,14 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var authenticate = require('./authenticate');
+var fileUpload = require('express-fileupload');
+var autoIncrement = require('mongoose-auto-increment');
 
 var config = require('./config');
 
 mongoose.connect(config.mongoUrl);
 var db = mongoose.connection;
+autoIncrement.initialize(db);
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     // we're connected!
@@ -23,7 +26,9 @@ var userRouter = require('./routes/users');
 var timetableRouter=require('./routes/timeRouter');
 var announcementRouter=require('./routes/announcementRouter');
 var scrapeRouter=require('./routes/scrapeRouter');
-
+var eventRouter=require('./routes/eventRouter');
+var memberRouter=require('./routes/memberRouter');
+var testRouter= require('./routes/testRouter');
 var app = express();
 
 // view engine setup
@@ -36,6 +41,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(fileUpload());
 
 // passport config
 app.use(passport.initialize());
@@ -46,7 +52,10 @@ app.use('/', routes);
 app.use('/users', userRouter);
 app.use('/timetable',timetableRouter);
 app.use('/announcement',announcementRouter);
-app.use('/scrape',scrapeRouter)
+app.use('/scrape',scrapeRouter);
+app.use('/event',eventRouter);
+app.use('/member',memberRouter);
+app.use('/test',testRouter);
 
 
 // catch 404 and forward to error handler
