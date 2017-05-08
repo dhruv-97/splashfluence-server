@@ -48,7 +48,7 @@ angular.module('fileUpload', ['ngFileUpload','ngResource','ocNgRepeat'])
     
     vm.upload = function (image1,image2,event) {
         Upload.upload({
-            url: 'http://localhost:3000/event/upload', //webAPI exposed to upload the file
+            url: 'https://peaceful-forest-22917.herokuapp.com/event/upload', //webAPI exposed to upload the file
             data:{image1:image1,
                   image2:image2,
                   name:event.name,
@@ -80,7 +80,7 @@ angular.module('fileUpload', ['ngFileUpload','ngResource','ocNgRepeat'])
     
     vm2.upload = function (image,member) {
         Upload.upload({
-            url: 'http://localhost:3000/member', //webAPI exposed to upload the file
+            url: 'https://peaceful-forest-22917.herokuapp.com/member', //webAPI exposed to upload the file
             data:{image:image,
                   name:member.name,
                   designation: member.designation,
@@ -111,7 +111,7 @@ angular.module('fileUpload', ['ngFileUpload','ngResource','ocNgRepeat'])
     
     vm3.upload = function (test) {
         Upload.upload({
-            url: 'http://localhost:3000/test', //webAPI exposed to upload the file
+            url: 'https://peaceful-forest-22917.herokuapp.com/test', //webAPI exposed to upload the file
             data:{
                     heading: test.heading,
                     description: test.description,
