@@ -1,6 +1,7 @@
 
 angular.module('fileUpload', ['ngFileUpload','ngResource','ocNgRepeat'])
 .constant("baseURL", "https://peaceful-forest-22917.herokuapp.com/")
+//.constant("baseURL","http://localhost:3000/")
 .factory('eventFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
         return $resource(baseURL + "event/:id", null, {
@@ -49,6 +50,7 @@ angular.module('fileUpload', ['ngFileUpload','ngResource','ocNgRepeat'])
     vm.upload = function (image1,image2,event) {
         Upload.upload({
             url: 'https://peaceful-forest-22917.herokuapp.com/event/upload', //webAPI exposed to upload the file
+            //url: 'http://localhost:3000/event/upload',
             data:{image1:image1,
                   image2:image2,
                   name:event.name,

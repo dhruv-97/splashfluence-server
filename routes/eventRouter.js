@@ -13,6 +13,7 @@ eventRouter.use(bodyParser.json());
 
 eventRouter.route('/')
 .get(function (req, res, next) {
+    console.log(req.query);
     if(req.query!='{}'){
         events.find(req.query).sort('_id').limit(4).exec(function (err, event) {
             if (err) throw err;
@@ -34,13 +35,11 @@ eventRouter.route('/')
 });
 eventRouter.route('/upload')
 .post(function(req, res, next) {
-    console.log(req.body);
   if (!req.files)
     return res.status(400).send('No files were uploaded.');
  
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file 
-  let image1 = req.files.image1;
-  let image2 = req.files.image2;
+  
   //let image2 = req.files.image2;
   events.nextCount(function(err, count){
     req.body.image1="public/assets/img/portfolio/grid/"+req.body.category+"/"+count+"1.jpg";
@@ -58,18 +57,19 @@ eventRouter.route('/upload')
         req.body.featured=true;
     else
         req.body.featured=false;
+    let image1 = req.files.image1;
   // Use the mv() method to place the file somewhere on your server 
   image1.mv(req.body.image1, function(err) {
     if (err)
       return res.status(500).send(err);
- 
+      let image2 = req.files.image2;
     image2.mv(req.body.image2, function(err) {
         if (err)
           return res.status(500).send(err);
         
         req.body._id=count;
-        var s1=images(req.body.image1).size();
-        var s2=images(req.body.image2).size();
+        let s1=images(req.body.image1).size();
+        let s2=images(req.body.image2).size();
         if(s1.width>s2.width){
             images(req.body.image1).resize(s2.width)
             .save(req.body.image1,{
@@ -82,8 +82,8 @@ eventRouter.route('/upload')
                 quality:100
             });
         }
-        var criticalw=s1.width*0.7;
-        var criticalh=s1.height*0.7;
+        let criticalw=s1.width*0.7;
+        let criticalh=s1.height*0.7;
         req.body.combinedImage="public/assets/img/portfolio/combo"+count+".png";
         images(criticalw+s2.width, s2.height+criticalh)
             .draw(images(req.body.image1), 0, 0)
