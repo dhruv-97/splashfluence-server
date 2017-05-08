@@ -23,9 +23,6 @@ db.once('open', function () {
 
 var routes = require('./routes/index');
 var userRouter = require('./routes/users');
-var timetableRouter=require('./routes/timeRouter');
-var announcementRouter=require('./routes/announcementRouter');
-var scrapeRouter=require('./routes/scrapeRouter');
 var eventRouter=require('./routes/eventRouter');
 var memberRouter=require('./routes/memberRouter');
 var testRouter= require('./routes/testRouter');
@@ -50,9 +47,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', userRouter);
-app.use('/timetable',timetableRouter);
-app.use('/announcement',announcementRouter);
-app.use('/scrape',scrapeRouter);
 app.use('/event',eventRouter);
 app.use('/member',memberRouter);
 app.use('/test',testRouter);
