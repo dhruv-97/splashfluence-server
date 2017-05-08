@@ -13,11 +13,18 @@ eventRouter.use(bodyParser.json());
 
 eventRouter.route('/')
 .get(function (req, res, next) {
-    console.log(req.query);
-    events.find(req.query).sort('_id').exec(function (err, event) {
+    if(req.query!='{}'){
+        events.find(req.query).sort('_id').limit(4).exec(function (err, event) {
+            if (err) throw err;
+            res.json(event);
+        });
+    }
+    else{
+        events.find().sort('_id').exec(function (err, event) {
         if (err) throw err;
         res.json(event);
-    });
+        });
+    }
 })
 .delete(function (req, res, next) {
     events.remove({}, function (err, resp) {
