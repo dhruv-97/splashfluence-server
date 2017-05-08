@@ -27,7 +27,6 @@ memberRouter.route('/')
         image.mv(req.body.image, function(err) {
             if (err)
               return res.status(500).send(err);
-            req.body._id=count;
             images(req.body.image).resize(400,400)
             .save(req.body.image,{
                 quality:100

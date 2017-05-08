@@ -44,7 +44,7 @@ eventRouter.route('/upload')
   events.nextCount(function(err, count){
     req.body.image1="public/assets/img/portfolio/grid/"+req.body.category+"/"+count+"1.jpg";
     req.body.image2="public/assets/img/portfolio/grid/"+req.body.category+"/"+count+"2.jpg"; 
-    var bg= count%4;
+    let bg= count%4;
     if(bg==0)
         req.body.bg='assets/img/portfolio/bg-1.jpg';
     else if(bg==1)
@@ -60,14 +60,16 @@ eventRouter.route('/upload')
     let image1 = req.files.image1;
   // Use the mv() method to place the file somewhere on your server 
   image1.mv(req.body.image1, function(err) {
-    if (err)
+    if (err){
       return res.status(500).send(err);
-      let image2 = req.files.image2;
+      console.log("Got fucked here");
+    }
+    let image2 = req.files.image2;
     image2.mv(req.body.image2, function(err) {
-        if (err)
+        if (err){
           return res.status(500).send(err);
-        
-        req.body._id=count;
+          console.log("Got fucked here too");
+        }
         let s1=images(req.body.image1).size();
         let s2=images(req.body.image2).size();
         if(s1.width>s2.width){
