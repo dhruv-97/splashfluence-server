@@ -49,7 +49,7 @@ angular.module('fileUpload', ['ngFileUpload','ngResource','ocNgRepeat'])
     
     vm.upload = function (image1,image2,event) {
         Upload.upload({
-            url: baseUrl+'event/upload', //webAPI exposed to upload the file
+            url: baseURL+'event/upload', //webAPI exposed to upload the file
             //url: 'http://localhost:3000/event/upload',
             data:{image1:image1,
                   image2:image2,
@@ -82,7 +82,7 @@ angular.module('fileUpload', ['ngFileUpload','ngResource','ocNgRepeat'])
     
     vm2.upload = function (image,member) {
         Upload.upload({
-            url: baseUrl+'member', //webAPI exposed to upload the file
+            url: baseURL+'member', //webAPI exposed to upload the file
             data:{image:image,
                   name:member.name,
                   designation: member.designation,
@@ -113,7 +113,7 @@ angular.module('fileUpload', ['ngFileUpload','ngResource','ocNgRepeat'])
     
     vm3.upload = function (test) {
         Upload.upload({
-            url: baseUrl+'/test', //webAPI exposed to upload the file
+            url: baseURL+'/test', //webAPI exposed to upload the file
             data:{
                     heading: test.heading,
                     description: test.description,
