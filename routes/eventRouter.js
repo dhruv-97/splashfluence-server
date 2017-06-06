@@ -13,7 +13,7 @@ eventRouter.use(bodyParser.json());
 
 eventRouter.route('/')
 .get(function (req, res, next) {
-    console.log(req.query);
+    //console.log(req.query);
     if(req.query!='{}'){
         events.find(req.query).sort('_id').limit(4).exec(function (err, event) {
             if (err) throw err;
@@ -60,16 +60,12 @@ eventRouter.route('/upload')
     let image1 = req.files.image1;
   // Use the mv() method to place the file somewhere on your server 
   image1.mv(req.body.image1, function(err) {
-    if (err){
+    if (err)
       return res.status(500).send(err);
-      console.log("Got fucked here");
-    }
     let image2 = req.files.image2;
     image2.mv(req.body.image2, function(err) {
-        if (err){
+        if (err)
           return res.status(500).send(err);
-          console.log("Got fucked here too");
-        }
         let s1=images(req.body.image1).size();
         let s2=images(req.body.image2).size();
         if(s1.width>s2.width){

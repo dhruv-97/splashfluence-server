@@ -1,7 +1,7 @@
 
 angular.module('fileUpload', ['ngFileUpload','ngResource','ocNgRepeat'])
-.constant("baseURL", "https://peaceful-forest-22917.herokuapp.com/")
-//.constant("baseURL","http://localhost:3000/")
+//.constant("baseURL", "https://peaceful-forest-22917.herokuapp.com/")
+.constant("baseURL","http://ec2-52-66-87-230.ap-south-1.compute.amazonaws.com/")
 .factory('eventFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
         return $resource(baseURL + "event/:id", null, {
