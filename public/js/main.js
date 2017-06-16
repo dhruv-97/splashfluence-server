@@ -216,7 +216,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
     */
     function getSignedRequest(file){
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `member/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+      xhr.open('GET', `http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/member/sign-s3?file-name=${file.name}&file-type=${file.type}`);
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200){
