@@ -17,7 +17,7 @@
 <body>
   <div class="container">
 
-    <form class="well form-horizontal" ng-controller="MyCtrl3 as up" >
+    <form class="well form-horizontal" ng-controller="MyCtrl3" >
 <fieldset>
 
 <!-- Form Name -->
@@ -30,7 +30,7 @@
   <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="heading" placeholder="Heading" class="form-control"  type="text" ng-model="up.test.heading">
+  <input  name="heading" placeholder="Heading" class="form-control"  type="text" ng-model="test.heading">
     </div>
   </div>
 </div>
@@ -42,7 +42,7 @@
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-          <textarea class="form-control" name="comment" placeholder="Description" ng-model="up.test.description"></textarea>
+          <textarea class="form-control" name="comment" placeholder="Description" ng-model="test.description"></textarea>
   </div>
   </div>
 </div>
@@ -51,7 +51,7 @@
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="name" placeholder="Author Name" class="form-control"  type="text" ng-model="up.test.name">
+  <input name="name" placeholder="Author Name" class="form-control"  type="text" ng-model="test.name">
     </div>
   </div>
 </div>
@@ -60,7 +60,7 @@
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="date" placeholder="Date" class="form-control"  type="text" ng-model="up.test.date">
+  <input name="date" placeholder="Date" class="form-control"  type="text" ng-model="test.date">
     </div>
   </div>
 </div>
@@ -69,7 +69,7 @@
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="link" placeholder="Link" class="form-control"  type="text" ng-model="up.test.link">
+  <input name="link" placeholder="Link" class="form-control"  type="text" ng-model="test.link">
     </div>
   </div>
 </div>
@@ -78,7 +78,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-4">
-    <button type="submit" class="btn btn-warning" ng-click="up.submit()">Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="submit" class="btn btn-warning" ng-click="submit()">Send <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
 
@@ -89,12 +89,12 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
-<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-    <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/ng-repeat-owl-carousel/dist/ngRepeatOwlCarousel.min.js"></script>
-  <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="/bower_components/ng-repeat-owl-carousel/dist/ngRepeatOwlCarousel.min.js"></script>
+  <script type="text/javascript" src="/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
 
 
 </body>

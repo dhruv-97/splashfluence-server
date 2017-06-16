@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var tests = require('../models/test');
 var Verify=require('./verify');
-var images = require('images');
 var testRouter = express.Router();
 
 testRouter.use(bodyParser.json());

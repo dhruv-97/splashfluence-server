@@ -116,7 +116,7 @@
                     <ul class="timeline">
                         <li>
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="assets/img/people/0.jpg" alt="">
+                                <img class="img-circle img-responsive" src="assets/img/about/member1.jpg" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -195,7 +195,7 @@
                 <div class="col-lg-12">
                     <div class="about-carousel">
                         <div class="item" ng-repeat="member in members" ng-repeat-owl-carousel carousel-init="carouselInitializer2">
-                            <img ng-src={{member.image}} class="img-responsive" alt="">
+                            <img ng-src={{member.image}} class="img-responsive light member" alt="">
                             <div class="caption">
                                 <h3>{{member.name}}</h3>
                                 <hr class="colored">
@@ -312,7 +312,8 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-md-pull-4 hidden-xs">
-                        <img ng-src={{event.combinedImage}} class="img-responsive portfolio-image" alt="">
+                        <img ng-src={{event.images[0]}} class="img-responsive portfolio-image" alt="">
+                        <img ng-src={{event.images[1]}} class="img-responsive portfolio-image image2" alt="">
                     </div>
                 </div>
             </div>
@@ -352,9 +353,9 @@
             <div class="row">
                 <div class="col-lg-12" >
                     <div id="portfoliolist" >
-                        <div class="portfolio {{event.category}}" data-cat="{{event.category}}" href="#{{event.name}}{{event._id}}" data-toggle="modal" ng-repeat="event in events">
+                        <div class="portfolio {{event.category}}" data-cat="{{event.category}}" href="#{{event.name}}{{event._id}}" data-toggle="modal" ng-repeat="event in events" ng-click="startCarousel()">
                             <div class="portfolio-wrapper">
-                                <img ng-src={{event.image1}} alt="{{event.name}}">
+                                <img ng-src={{event.images[0]}} alt="{{event.name}}">
                                 <div class="caption">
                                     <div class="caption-text">
                                         <a class="text-title">{{event.name}}</a>
@@ -386,7 +387,7 @@
                                             <img ng-src={{test.image}} class="img-circle img-responsive" alt="">
                                         </div>
                                         <div class="testimonial-author">
-                                            <span class="name">{{test.author}}</span>
+                                            <span class="name">{{test.name}}</span>
                                             <p class="small">{{test.date}}</p>
                                             <div class="stars">
                                                 <i class="fa fa-star"></i>
@@ -605,7 +606,22 @@
                             <p>{{event.description}}</p>
                         </div>
                         <div class="col-lg-12">
-                            <img ng-src={{event.image2}} class="img-responsive img-centered" alt="">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Carousel indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" ng-repeat="(index,image) in event.images.slice(1)" data-slide-to={{index+1}}></li>
+                                </ol>   
+                                <!-- Wrapper for carousel items -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img ng-src={{event.images[0]}} class="img-responsive img-centered" alt="First Slide">
+                                    </div>
+                                    <div class="item" ng-repeat="image in event.images.slice(1)">
+                                        <img ng-src={{image}} class="img-responsive img-centered" alt="Second Slide">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-8 col-lg-offset-2">
                             <ul class="list-inline item-details">
@@ -640,10 +656,8 @@
     <script src="assets/js/contact_me.js"></script>
     <script src="assets/js/plugins/jqBootstrapValidation.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-    <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="bower_components/ng-repeat-owl-carousel/dist/ngRepeatOwlCarousel.min.js"></script>
-  <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <!-- Vitality Theme Scripts -->
     <script src="assets/js/vitality.js"></script>

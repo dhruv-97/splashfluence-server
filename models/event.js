@@ -24,14 +24,9 @@ var eventSchema = new Schema({
       type: String,
       required: true
     },
-    image1: {
-      type: String
-    },
-    image2: {
-      type: String
-    },
-    combinedImage: {
-      type: String
+    images: {
+      type: [String],
+      required: true
     },
     featured: {
       type: Boolean,

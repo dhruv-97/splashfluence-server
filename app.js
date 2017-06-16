@@ -1,3 +1,4 @@
+//require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,7 +8,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var authenticate = require('./authenticate');
-var fileUpload = require('express-fileupload');
+var Verify    = require('./routes/verify');
 var autoIncrement = require('mongoose-auto-increment');
 
 var config = require('./config');
@@ -27,10 +28,6 @@ var eventRouter=require('./routes/eventRouter');
 var memberRouter=require('./routes/memberRouter');
 var testRouter= require('./routes/testRouter');
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
@@ -38,18 +35,19 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(fileUpload());
 
 // passport config
 app.use(passport.initialize());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', routes);
 app.use('/users', userRouter);
 app.use('/event',eventRouter);
 app.use('/member',memberRouter);
 app.use('/test',testRouter);
+app.use('/admin', [Verify.verifyOrdinaryUser, Verify.verifyAdmin,express.static(path.join(__dirname, 'admin'))]);
 
 
 

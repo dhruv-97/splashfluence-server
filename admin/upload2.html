@@ -17,7 +17,7 @@
 <body>
   <div class="container">
 
-    <form class="well form-horizontal" ng-controller="MyCtrl as up" name="up.upload_form">
+    <form class="well form-horizontal" ng-controller="MyCtrl" name="upload_form">
 <fieldset>
 
 <!-- Form Name -->
@@ -30,7 +30,7 @@
   <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="first_name" placeholder="Name" class="form-control"  type="text" ng-model="up.event.name">
+  <input  name="first_name" placeholder="Name" class="form-control"  type="text" ng-model="event.name">
     </div>
   </div>
 </div>
@@ -42,7 +42,7 @@
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="last_name" placeholder="Mansarovar Park" class="form-control"  type="text" ng-model="up.event.place">
+  <input name="last_name" placeholder="Mansarovar Park" class="form-control"  type="text" ng-model="event.place">
     </div>
   </div>
 </div>
@@ -51,7 +51,7 @@
     <div class="col-md-4 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select ng-model="up.event.category" name="state" ng-options="cat as cat for cat in up.cats" class="form-control selectpicker"> 
+    <select ng-model="event.category" name="state" ng-options="cat as cat for cat in cats" class="form-control selectpicker"> 
     </select>
   </div>
 </div>
@@ -61,12 +61,12 @@
                         <div class="col-md-4">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="featured" ng-model="up.event.featured" ng-value="true" /> Yes
+                                    <input type="radio" name="featured" ng-model="event.featured" ng-value="true" /> Yes
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="featured" ng-model="up.event.featured" ng-value="false" /> No
+                                    <input type="radio" name="featured" ng-model="event.featured" ng-value="false" /> No
                                 </label>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-          <textarea class="form-control" name="comment" placeholder="Description" ng-model="up.event.description"></textarea>
+          <textarea class="form-control" name="comment" placeholder="Description" ng-model="event.description"></textarea>
   </div>
   </div>
 </div>
@@ -92,38 +92,16 @@
 <!-- Text input-->
  
 <div class="form-group">
-  <label class="col-md-4 control-label">Image 1</label>  
+  <label class="col-md-4 control-label">Images</label>  
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input type="file" 
-                ngf-select 
-                ng-model="up.image1" 
-                name="file" 
-                ngf-pattern="'image/*'"
-                accept="image/*" 
-                ngf-max-size="20MB" class="form-control">
+  <input type="file" id="file-input" multiple />
+                            <p ng-show="show">Uploading...</p>
+                            <p ng-show="done">Done...</p>
     </div>
   </div>
 </div>
-<div class="form-group">
-  <label class="col-md-4 control-label">Image 2</label>  
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input type="file" 
-                ngf-select 
-                ng-model="up.image2" 
-                name="file" 
-                ngf-pattern="'image/*'"
-                accept="image/*" 
-                ngf-max-size="20MB" class="form-control">
-    </div>
-</div>
-</div>
-
-
-
 <!-- Text input-->
 
 <!-- radio checks -->
@@ -136,7 +114,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-4">
-    <button type="submit" class="btn btn-warning" ng-click="up.submit()">Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="submit" class="btn btn-warning" ng-click="sendEvent()">Send <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
 
@@ -147,12 +125,12 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
-<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-    <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/ng-repeat-owl-carousel/dist/ngRepeatOwlCarousel.min.js"></script>
-  <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="/bower_components/ng-repeat-owl-carousel/dist/ngRepeatOwlCarousel.min.js"></script>
+  <script type="text/javascript" src="/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
 
 
 </body>
