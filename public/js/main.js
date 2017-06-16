@@ -564,7 +564,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
         if (confirm("sure to delete")) {
             console.log('Delete event', memberid);
             memberFactory.delete({id: memberid});
-            //$window.location.reload();
+            $window.location.reload();
             
         }
     };
