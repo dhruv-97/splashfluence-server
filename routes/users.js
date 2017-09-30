@@ -4,6 +4,8 @@ var passport = require('passport');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User = require('../models/user');
+var Brand = require('../models/brand');
+var Influencer = require('../models/influencer');
 var Verify    = require('./verify');
 
 var router = express.Router();
@@ -22,16 +24,49 @@ router.get('/', Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res
   }
 
 }); */
-router.get('/',Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res, next) {
-  User.find({}, function (err, users) {
-        if (err) throw err;
-        res.json(users);
-    });
+router.get('/', function(req, res, next) {
+  User.find({})
+  .populate('influencerRef')
+  .populate('brandRef')
+  .exec(function (err, users) {
+    if (err) next(err);
+    res.json(users);
+  })
 });
 
 
 router.post('/register', function(req, res) {
-    User.register(new User({ username : req.body.username }),
+  console.log(req.body);
+  let promise = new Promise(function(resolve,reject){
+    if(req.body.brand==true){
+      Brand.create({brand_name:req.body.brand_name, brand_url:req.body.brand_name}, function(err, brand){
+        if(err) reject(err);
+        else{
+          console.log("Brand created");
+          resolve(brand);
+        }
+      })      
+    }
+    else {
+      Influencer.create({facebook: req.body.username, twitter: req.body.twitter, instagram: req.body.instagram,
+      youtube:req.body.youtube, blog: req.body.blog, category: req.body.category,
+      location: req.body.location}, function(err, influencer){
+        if(err) reject(err);
+        else{
+          console.log("Influencer created");
+          resolve(influencer);
+        }  
+      })
+    }
+  })
+    promise.then(function(result){
+      if(req.body.brand == true)
+        req.body.brandRef = result._id;
+      else
+        req.body.influencerRef = result._id;
+      User.register(new User({ username : req.body.username, phone: req.body.phone,
+      email: req.body.email, brand: req.body.brand,
+      brandRef: req.body.brandRef, influencerRef: req.body.influencerRef}),
         req.body.password, function(err, user) {
         if (err) {
             return res.status(500).json({err: err});
@@ -48,6 +83,11 @@ router.post('/register', function(req, res) {
             });
         });
     });
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+    
 });
 
 router.post('/login', function(req, res, next) {
@@ -66,12 +106,14 @@ router.post('/login', function(req, res, next) {
           err: 'Could not log in user'
         });
       }
-        
+      //console.log(user);  
       var token = Verify.getToken(user);
               res.status(200).json({
         status: 'Login successful!',
         success: true,
-        token: token
+        token: token,
+        username: user.username,
+        brand: user.brand
       });
     });
   })(req,res,next);

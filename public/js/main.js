@@ -1,5 +1,5 @@
 angular.module('fileUpload', ['ngResource','ocNgRepeat'])
-.constant("baseURL","http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/")
+.constant("baseURL","http://localhost:3000/")
 .factory('eventFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
         return $resource(baseURL + "event/:id", null, {
@@ -62,7 +62,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
             console.log($scope.event);
             var eventObj = angular.toJson($scope.event);
             if(track==-1){
-            $http.post('http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/event',eventObj,{
+            $http.post('http://localhost:3000/event',eventObj,{
             headers: { 'Content-Type': 'application/json'}
         }).success(function(data, status, headers, config) {
                     alert("Success!");
@@ -72,7 +72,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
                   });
               }
               else{
-                $http.put('http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/event/'+track,eventObj,{
+                $http.put('http://localhost:3000/event/'+track,eventObj,{
             headers: { 'Content-Type': 'application/json'}
         }).success(function(data, status, headers, config) {
                     track=-1;
@@ -102,7 +102,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
     }
     function getSignedRequest(file){
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/member/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+      xhr.open('GET', `http://localhost:3000/member/sign-s3?file-name=${file.name}&file-type=${file.type}`);
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200){
@@ -172,7 +172,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
             console.log($scope.member);
             var memberObj = angular.toJson($scope.member);
             if(track==-1){
-            $http.post('http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/member',memberObj,{
+            $http.post('http://localhost:3000/member',memberObj,{
             headers: { 'Content-Type': 'application/json'}
         }).success(function(data, status, headers, config) {
                     alert("Success!");
@@ -182,7 +182,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
                   });
               }
             else{
-                $http.put('http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/member/'+$scope.member._id,memberObj,{
+                $http.put('http://localhost:3000/member/'+$scope.member._id,memberObj,{
             headers: { 'Content-Type': 'application/json'}
         }).success(function(data, status, headers, config) {
                     track=-1;
@@ -216,7 +216,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
     */
     function getSignedRequest(file){
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/member/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+      xhr.open('GET', `http://localhost:3000/member/sign-s3?file-name=${file.name}&file-type=${file.type}`);
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200){
@@ -273,7 +273,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
         var testObj = angular.toJson($scope.test);
         console.log(testObj);
         if(track==-1){
-            $http.post('http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/test',testObj,{
+            $http.post('http://localhost:3000/test',testObj,{
             headers: { 'Content-Type': 'application/json'}
         }).success(function(data, status, headers, config) {
                     alert("Success!");
@@ -283,7 +283,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
                   });
               }
         else{
-                $http.put('http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/test/'+$scope.test._id,testObj,{
+                $http.put('http://localhost:3000/test/'+$scope.test._id,testObj,{
             headers: { 'Content-Type': 'application/json'}
         }).success(function(data, status, headers, config) {
                     track=-1;
@@ -303,10 +303,8 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
     $scope.showFavorites = false;
     $scope.showMenu = false;
     $scope.showEvents = false;
+    $scope.showTests = false;
     $scope.message = "Loading ...";
-    $(window).on("load", function() {
-        $("#myCarousel").carousel("cycle");
-    });
     var filterList = {
         init: function() {
 
@@ -380,8 +378,9 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
         });
     testFactory.query(
         function (response) {
+            console.log(response);
             $scope.tests = response;
-            //$scope.showMenu=true;
+            $scope.showTests=true;
             
         },
         function (response) {
@@ -612,7 +611,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
     $scope.username='';
     $scope.password='';
     $scope.login = function(){
-        $http.post('http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/users/login',
+        $http.post('http://localhost:3000/users/login',
         {
             "username":$scope.username,
             "password":$scope.password
@@ -621,7 +620,7 @@ angular.module('fileUpload', ['ngResource','ocNgRepeat'])
         }).success(function(data, status, headers, config) {
                     if(data.success==true){
                         $window.sessionStorage.accessToken = data.token;
-                        window.location.href = "http://ec2-13-126-34-179.ap-south-1.compute.amazonaws.com/admin/admin.html?token="+data.token;
+                        window.location.href = "http://localhost:3000/admin/admin.html?token="+data.token;
                     }
                     //$window.location.reload();
                    }).error(function(data, status, headers, config) {

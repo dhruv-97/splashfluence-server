@@ -1,4 +1,4 @@
-//require('dotenv').config();
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,24 +9,19 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var authenticate = require('./authenticate');
 var Verify    = require('./routes/verify');
-var autoIncrement = require('mongoose-auto-increment');
 
 var config = require('./config');
 
 mongoose.connect(config.mongoUrl);
 var db = mongoose.connection;
-autoIncrement.initialize(db);
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     // we're connected!
     console.log("Connected correctly to server");
 });
 
-var routes = require('./routes/index');
 var userRouter = require('./routes/users');
-var eventRouter=require('./routes/eventRouter');
-var memberRouter=require('./routes/memberRouter');
-var testRouter= require('./routes/testRouter');
+var campRouter=require('./routes/campRouter');
 var app = express();
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -41,13 +36,29 @@ app.use(passport.initialize());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function (req, res, next) {
+  
+      // Website you wish to allow to connect
+      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  
+      // Request methods you wish to allow
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  
+      // Request headers you wish to allow
+      res.setHeader('Access-Control-Allow-Headers', 'x-access-token,content-type');
+  
+      // Set to true if you need the website to include cookies in the requests sent
+      // to the API (e.g. in case you use sessions)
+      res.setHeader('Access-Control-Allow-Credentials', true);
+  
+      // Pass to next layer of middleware
+      next();
+  });
 
-app.use('/', routes);
+
 app.use('/users', userRouter);
-app.use('/event',eventRouter);
-app.use('/member',memberRouter);
-app.use('/test',testRouter);
-app.use('/admin', [Verify.verifyOrdinaryUser, Verify.verifyAdmin,express.static(path.join(__dirname, 'admin'))]);
+app.use('/camp',campRouter);
+
 
 
 

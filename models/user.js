@@ -7,23 +7,23 @@ var User = new Schema({
     password: String,
     OauthId: String,
     OauthToken: String,
-    firstname: {
-      type: String,
-      default: ''
+    phone: String,
+    email: String,
+    brand: {
+      type: Boolean,
+      required: true
     },
-    lastname: {
-      type: String,
-      default: ''
+    brandRef: {
+      type: Schema.Types.ObjectId,
+      ref: 'Brand'
     },
-    admin:   {
-        type: Boolean,
-        default: false
+    influencerRef: {
+      type: Schema.Types.ObjectId,
+      ref: 'Influencer'
     }
-});
+},
+{timestamps: true});
 
-User.methods.getName = function() {
-    return (this.firstname + ' ' + this.lastname);
-};
 User.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', User);
