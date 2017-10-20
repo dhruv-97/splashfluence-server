@@ -1,5 +1,4 @@
 var express = require('express');
-var fs = require('fs');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var camps = require('../models/camp');
@@ -25,8 +24,7 @@ campRouter.route('/')
         if (err) next(err);
         console.log('camp created!');
         var id = camp._id;
-
-        res.json({id: id});
+        res.json({id});
     });
 })
 .delete(function (req, res, next) {
@@ -71,12 +69,16 @@ campRouter.route('/:campId')
 
 
 .put(function (req, res, next) {
+    console.log(req.body);
+    let influencers =  req.body.influencerId;
     camps.findByIdAndUpdate(req.params.campId, {
-        $set: req.body
+        $push: {
+            influencers: influencers
+        }
     }, {
         new: true
     }, function (err, camp) {
-        if (err) next(err);
+        if (err) throw(err);
         res.json(camp);
     });
 })

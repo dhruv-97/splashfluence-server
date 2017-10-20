@@ -1,14 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
 
 var User = new Schema({
-    username: String,
-    password: String,
-    OauthId: String,
-    OauthToken: String,
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     phone: String,
-    email: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
     brand: {
       type: Boolean,
       required: true
@@ -23,7 +22,4 @@ var User = new Schema({
     }
 },
 {timestamps: true});
-
-User.plugin(passportLocalMongoose);
-
 module.exports = mongoose.model('User', User);
