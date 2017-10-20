@@ -13,6 +13,7 @@
     "cheerio": "^0.22.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
+    "dotenv": "^4.0.0",
     "email-verification": "^0.4.6",
     "express": "~4.14.1",
     "express-fileupload": "^0.1.2",
@@ -33,7 +34,5 @@
     "serve-favicon": "~2.3.2",
     "shortid": "^2.2.8"
   },
-  "devDependencies": {
-    "dotenv": "^4.0.0"
-  }
+  "devDependencies": {}
 }
