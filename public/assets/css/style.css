@@ -327,4 +327,12 @@ video#bgvid {
 	#something{
 		background-color: black !important;
 	}
+	#header{
+		background: url('../images/cover.jpg');
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		width: 100%;
+	}
 }
