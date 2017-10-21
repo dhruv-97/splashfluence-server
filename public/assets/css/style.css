@@ -12,7 +12,12 @@ body a{
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+#first{
+	font-size:80px;
+}
+#second{
+	top:0%;
+}
 #main-reservation-text h3{
 	background:rgba(0,0,0,0.8);
 	font-size: 1.8em;
@@ -294,7 +299,15 @@ video#bgvid {
     }
     .bg-color{
     	height: 400px;
-    }
+		}
+		#first{
+			top:40%;
+			font-size: 40px;
+			position: relative;
+		}
+		#second{
+			top:40%;		
+		}
     .overlay-desc {
   background: rgba(0,0,0,0);
   position: absolute;
@@ -310,5 +323,8 @@ video#bgvid {
 	.mobgraph{
 		visibility: visible;
 		display: block;
+	}
+	#something{
+		background-color: black !important;
 	}
 }
