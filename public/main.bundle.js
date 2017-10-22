@@ -1164,7 +1164,7 @@ var InfluencerRegComponent = (function () {
     };
     InfluencerRegComponent.prototype.postInfluencer = function () {
         console.log(this.user);
-        this.service.postUser(this.user).then(function (res) { return alert("Registration Successful"); }, function (err) { return alert("Could not register user"); });
+        this.service.postUser(this.user).then(function (res) { return alert("A verification email has been sent to your email. Please click on the link to verify."); }, function (err) { return alert("Could not register user"); });
     };
     return InfluencerRegComponent;
 }());
