@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 // var passport = require('passport');
 // var authenticate = require('./authenticate');
 var Verify    = require('./routes/verify');
-
+var compression = require('compression');
 var config = require('./config');
 
 mongoose.connect(config.mongoUrl);
@@ -24,6 +24,7 @@ var userRouter = require('./routes/users');
 var campRouter=require('./routes/campRouter');
 var influencerRouter=require('./routes/influencerRouter');
 var app = express();
+app.use(compression());
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
@@ -35,25 +36,6 @@ app.use(cookieParser());
 
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(function (req, res, next) {
-  
-      // Website you wish to allow to connect
-      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  
-      // Request methods you wish to allow
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  
-      // Request headers you wish to allow
-      res.setHeader('Access-Control-Allow-Headers', 'x-access-token,content-type');
-  
-      // Set to true if you need the website to include cookies in the requests sent
-      // to the API (e.g. in case you use sessions)
-      res.setHeader('Access-Control-Allow-Credentials', true);
-  
-      // Pass to next layer of middleware
-      next();
-  });
 
 
 app.use('/users', userRouter);
