@@ -1,338 +1,45 @@
-body a{
-	transition:0.5s all;
-	-webkit-transition:0.5s all;
-	-moz-transition:0.5s all;
-	-o-transition:0.5s all;
-	-ms-transition:0.5s all;
-}
-.parallax{
-    min-height: 500px; 
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-#first{
-	font-size:80px;
-}
-#second{
-	top:0%;
-}
-#main-reservation-text h3{
-	background:rgba(0,0,0,0.8);
-	font-size: 1.8em;
-	font-weight:700;
-	text-transform: uppercase;
-	display: inline-block;
-	color: #fff;
-	font-family: 'Open Sans Condensed', sans-serif;
-	padding:10px;
-}
-#main-reservation-text p{
-	background:rgba(0,0,0,0.8);
-	color:#fff;
-	padding:10px;
-	text-transform:capitalize;
-}
-#main-reservation-undertext p {
-	font-weight: 300;
-	color: #fff;
-	margin-top: 12px;
-	display: inline-block;
-	font-size: 0.7em;
-	text-transform: none;
-}
-#reservation-button {
-	color: #fff;
-	border: 2px solid #fff;
-	padding: 10px 26px;
-	margin-top: 0px;
-	font-size: 20px;
-	display: inline-block;
-	float: right;
-	font-weight:800;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-	cursor: pointer;
-	background-color:#00B895;
-}
-.btn.btn-primary {
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size:1.8em;
-	font-weight: 300;
-	font-style: normal;
-	text-shadow: none;
-	text-transform:uppercase;
-	color: #FFF;
-	padding: 10px 26px;
-	position: relative;
-	letter-spacing: 0;
-	background: transparent;
-	border-radius: 0;
-	box-shadow: none;
-	border: none;
-	outline: none;
-	border-radius: 0;
-	z-index: 1;
-	overflow: hidden;
-	-webkit-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-}
-.btn {
-	display: inline-block;
-	padding: 4px 12px;
-	margin-bottom: 0;
-	font-size: 14px;
-	text-align: center;
-	vertical-align: middle;
-	cursor: pointer;
-	color: #333;
-	text-shadow: 0 1px 1px rgba(255,255,255,0.75);
-	border: 1px solid #ccc;
-	border-bottom-color: #b3b3b3;
-}
-.btn-primary {
-	color: #fff;
-}
-.btn.btn-primary:before {
-	content: "";
-	position: absolute;
-	width: 0;
-	height: 100%;
-	bottom: 0;
-	right: 0;
-	top: 0;
-	z-index: -1;
-	border-radius: 0;
-	background:#F94B4B;
-	-webkit-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-}
-.btn.btn-primary:hover:before {
-	width: 100%;
-	left: 0;
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	transition: all 0.3s ease;
-}
-.btn.btn-primary:after {
-	content: "";
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	bottom: 0;
-	left: 0;
-	border-radius: 0;
-	background:#dcbc86;
-	z-index: -2;
-	-webkit-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-}
-
-.reservation_banner{
-	background: url(../images/ddd.jpg) no-repeat;
-	background-size: 100% 100%;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-position: bottom;
-	padding: 2em 0 3em;
-}
-.video-container {
-  position: relative;
-}
-video {
-  height: auto;
-  width: 100%;
-}
-.overlay-desc {
-  background: rgba(0,0,0,0);
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
-  display: flex;
-  margin-top: 12%;
-  justify-content: center;
-}
-.button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: yellow;
-  border: none;
-  color: black;
-  text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 400px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-#chartdiv {
-	width	: 100%;
-	height	: 500px;
-}	
-.main-header
-{
-    height: 650px;
-}
-.bg-color
-{
-
-    background-color: RGBA(0, 0, 0, 0.41);
-    height: 650px;
-    padding-bottom: 100px;
-}
-video#bgvid {
-    position: absolute;
-    min-width: 100%;
-    min-height: inherit;
-    width: 100%;
-    height: inherit;
-    z-index: -100;
-    background-size: cover;
-    object-fit: cover;
-}
-
-.fa:hover {
-    opacity: 0.7;
-}
-
-#How_It_Works button {
-  margin: 0 auto !important;
-  font-size: 2.0rem;
-  padding: 1.25rem 2.5rem;
-  display: block;
-  width: 200px;
-  background-color: transparent;
-  border: 1px solid white;
-  color: white !important;
-  font-weight: 300;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-#How_It_Works button:hover {
-  background-color: white;
-  color: black !important;
-  border-color: #009ac9;
-}
-.parallax button {
-  margin: 0 auto !important;
-  font-size: 2.0rem;
-  padding: 1.25rem 2.5rem;
-  display: block;
-  width: 200px;
-  background-color: transparent;
-  border: 1px solid white;
-  color: white !important;
-  font-weight: 300;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-.parallax button:hover {
-  background-color: white;
-  color: black !important;
-  border-color: #009ac9;
-}
-
-.overlay-desc {
-  background: rgba(0,0,0,0);
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.mobgraph{
-	visibility: hidden;
-	display: none;
-}
-
-.center-pills{
-	display: inline-block;
-}
-
-@media only screen and (max-width: 500px) {
-    .main-header {
-        	height: 400px;
-    }
-    .bg-color{
-    	height: 400px;
-		}
-		#first{
-			top:40%;
-			font-size: 40px;
-			position: relative;
-		}
-		#second{
-			top:40%;		
-		}
-    .overlay-desc {
-  background: rgba(0,0,0,0);
-  position: absolute;
-  margin-bottom:100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-	}
-	.desktopgraph{
-		visibility: hidden;
-		display: none;
-	}
-	.mobgraph{
-		visibility: visible;
-		display: block;
-	}
-	#something{
-		background-color: black !important;
-	}
-	#header{
-		background: url('../images/cover.jpg');
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-		width: 100%;
-	}
+body a{transition:0.5s all;-webkit-transition:0.5s all;-moz-transition:0.5s all;-o-transition:0.5s all;-ms-transition:0.5s all;}
+.parallax{min-height:500px;background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover;}
+#first{font-size:80px;}
+#second{top:0%;}
+#main-reservation-text h3{background:rgba(0,0,0,0.8);font-size:1.8em;font-weight:700;text-transform:uppercase;display:inline-block;color:#fff;font-family:'Open Sans Condensed', sans-serif;padding:10px;}
+#main-reservation-text p{background:rgba(0,0,0,0.8);color:#fff;padding:10px;text-transform:capitalize;}
+#main-reservation-undertext p{font-weight:300;color:#fff;margin-top:12px;display:inline-block;font-size:0.7em;text-transform:none;}
+#reservation-button{color:#fff;border:2px solid #fff;padding:10px 26px;margin-top:0px;font-size:20px;display:inline-block;float:right;font-weight:800;-webkit-transition:all 0.3s;-moz-transition:all 0.3s;transition:all 0.3s;cursor:pointer;background-color:#00B895;}
+.btn.btn-primary{font-family:'Open Sans Condensed', sans-serif;font-size:1.8em;font-weight:300;font-style:normal;text-shadow:none;text-transform:uppercase;color:#FFF;padding:10px 26px;position:relative;letter-spacing:0;background:transparent;border-radius:0;box-shadow:none;border:none;outline:none;border-radius:0;z-index:1;overflow:hidden;-webkit-transition:all 0.4s ease;-moz-transition:all 0.4s ease;-o-transition:all 0.4s ease;transition:all 0.4s ease;}
+.btn{display:inline-block;padding:4px 12px;margin-bottom:0;font-size:14px;text-align:center;vertical-align:middle;cursor:pointer;color:#333;text-shadow:0 1px 1px rgba(255,255,255,0.75);border:1px solid #ccc;border-bottom-color:#b3b3b3;}
+.btn-primary{color:#fff;}
+.btn.btn-primary:before{content:"";position:absolute;width:0;height:100%;bottom:0;right:0;top:0;z-index:-1;border-radius:0;background:#F94B4B;-webkit-transition:all 0.4s ease;-moz-transition:all 0.4s ease;-o-transition:all 0.4s ease;transition:all 0.4s ease;}
+.btn.btn-primary:hover:before{width:100%;left:0;-webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;-o-transition:all 0.3s ease;transition:all 0.3s ease;}
+.btn.btn-primary:after{content:"";position:absolute;width:100%;height:100%;bottom:0;left:0;border-radius:0;background:#dcbc86;z-index:-2;-webkit-transition:all 0.4s ease;-moz-transition:all 0.4s ease;-o-transition:all 0.4s ease;transition:all 0.4s ease;}
+.reservation_banner{background:url(../images/ddd.jpg) no-repeat;background-size:100% 100%;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;background-position:bottom;padding:2em 0 3em;}
+.video-container{position:relative;}
+video{height:auto;width:100%;}
+.overlay-desc{background:rgba(0,0,0,0);position:absolute;top:0;right:0;bottom:0;left:0;display:flex;margin-top:12%;justify-content:center;}
+.button{display:inline-block;border-radius:4px;background-color:yellow;border:none;color:black;text-align:center;font-size:28px;padding:20px;width:400px;transition:all 0.5s;cursor:pointer;margin:5px;}
+.button span{cursor:pointer;display:inline-block;position:relative;transition:0.5s;}
+.button span:after{content:'\00bb';position:absolute;opacity:0;top:0;right:-20px;transition:0.5s;}
+.button:hover span{padding-right:25px;}
+.button:hover span:after{opacity:1;right:0;}
+#chartdiv{width:100%;height:500px;}
+.main-header{height:650px;}
+.bg-color{background-color:RGBA(0, 0, 0, 0.41);height:650px;padding-bottom:100px;}
+video#bgvid{position:absolute;min-width:100%;min-height:inherit;width:100%;height:inherit;z-index:-100;background-size:cover;object-fit:cover;}
+.fa:hover{opacity:0.7;}
+#How_It_Works button{margin:0 auto !important;font-size:2.0rem;padding:1.25rem 2.5rem;display:block;width:200px;background-color:transparent;border:1px solid white;color:white !important;font-weight:300;-webkit-border-radius:3px;border-radius:3px;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+#How_It_Works button:hover{background-color:white;color:black !important;border-color:#009ac9;}
+.parallax button{margin:0 auto !important;font-size:2.0rem;padding:1.25rem 2.5rem;display:block;width:200px;background-color:transparent;border:1px solid white;color:white !important;font-weight:300;-webkit-border-radius:3px;border-radius:3px;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.parallax button:hover{background-color:white;color:black !important;border-color:#009ac9;}
+.overlay-desc{background:rgba(0,0,0,0);position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;}
+.mobgraph{visibility:hidden;display:none;}
+.center-pills{display:inline-block;}
+@media only screen and (max-width:500px){.main-header{height:400px;}
+.bg-color{height:400px;}
+#first{top:40%;font-size:40px;position:relative;}
+#second{top:40%;}
+.overlay-desc{background:rgba(0,0,0,0);position:absolute;margin-bottom:100%;display:flex;align-items:center;justify-content:center;}
+.desktopgraph{visibility:hidden;display:none;}
+.mobgraph{visibility:visible;display:block;}
+#something{background-color:black !important;}
+#header{background:url('../images/cover.jpg');-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;width:100%;}
 }
