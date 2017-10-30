@@ -7,6 +7,29 @@
   <meta name="description" content="Influencer Marketing Platform, Providesz a platform to he brands and the Influencers">
   <meta name="keywords" content="Influencer Marketing Platform, Influencer Marketing, brand Marketing, No 1 Influencer Marketing Platform, Marketing platform, Traditional marketing platform">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript">
+    var preloader;
+
+    function preload(opacity) {
+        if(opacity <= 0) {
+            showContent();
+        }
+        else {
+            preloader.style.opacity = opacity;
+            window.setTimeout(function() { preload(opacity - 0.05) }, 100);
+        }
+    }
+
+    function showContent() {
+        preloader.style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        preloader = document.getElementById('preloader');
+        preload(1);
+    });	
+  </script>
   <link rel="stylesheet" type="text/css" href="assets/css/hovereffect.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">		
@@ -14,17 +37,18 @@
       <link rel="stylesheet" href="assets/css/animate.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  
+  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
   
 </head>
 <body>
-  <app-root></app-root>
+  <div id="preloader"></div>
+  <app-root id="content"></app-root>
   <script type="text/javascript" src="assets/js/canvasjs.min.js"></script>
   <script type="text/javascript" src="assets/js/wow.js"></script>
   <script type="text/javascript" src="assets/js/top10.js"></script> 
   <script src='https://www.google.com/recaptcha/api.js'></script>
-  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
   <link rel="icon" href="assets/images/logo2.png" type="image/x-icon"/>
   <link rel="shortcut icon" href="assets/images/logo2.png" type="image/x-icon"/>
 <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
