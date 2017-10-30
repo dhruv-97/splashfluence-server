@@ -104,21 +104,21 @@ router.post('/register', function(req, res) {
     
         // user already exists in persistent collection...
         if (existingPersistentUser)
-          return res.status(500).json({status: 'User already exists!'});    
+          return res.status(409).json({status: 'User already exists!'});    
     
         // a new user
         if (newTempUser) {
             var URL = newTempUser[nev.options.URLFieldName];
             nev.sendVerificationEmail(req.body.email, URL, function(err, info) {
                 if (err)
-                  return res.status(500).json({status: 'Could not send verification email!'}); 
+                  return res.status(419).json({status: 'Could not send verification email!'}); 
     
                 return res.status(200).json({status: 'Registration Successful!'});
             });
     
         // user already exists in temporary collection...
         } else {
-            return res.status(500).json({status: 'Registration Unsuccessful!'});
+            return res.status(429).json({status: 'Registration Unsuccessful!'});
         }
     });
     })

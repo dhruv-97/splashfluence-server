@@ -408,7 +408,7 @@ var BrandRegComponent = (function () {
     };
     BrandRegComponent.prototype.postBrand = function () {
         console.log(this.brand);
-        this.service.postUser(this.brand).then(function (res) { return alert("A verification email has been sent to your email. Please click on the link to verify."); }, function (err) { return alert("Could not register user"); });
+        this.service.postUser(this.brand).then(function (res) { return alert("A verification email has been sent to your email. Please click on the link to verify."); });
     };
     return BrandRegComponent;
 }());
@@ -1164,7 +1164,7 @@ var InfluencerRegComponent = (function () {
     };
     InfluencerRegComponent.prototype.postInfluencer = function () {
         console.log(this.user);
-        this.service.postUser(this.user).then(function (res) { return alert("A verification email has been sent to your email. Please click on the link to verify."); }, function (err) { return alert("Could not register user"); });
+        this.service.postUser(this.user).then(function (res) { return alert("A verification email has been sent to your email. Please click on the link to verify."); });
     };
     return InfluencerRegComponent;
 }());
@@ -1311,8 +1311,12 @@ var SplashService = (function () {
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
     }
     SplashService.prototype.handleError = function (error) {
-        console.error('An error occurred', error);
-        // for demo purposes only
+        if (error.status == 409)
+            alert('User already exists');
+        if (error.status == 419)
+            alert('Could not send verification email');
+        if (error.status == 429)
+            alert('Please check your email for verification link');
         var token = this.headers.get('x-access-token');
         if (token != null)
             this.headers.delete('x-access-token');
