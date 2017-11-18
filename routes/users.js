@@ -12,7 +12,7 @@ var Verify    = require('./verify');
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
 nev.configure({
-  verificationURL: 'http://35.154.82.180:3000/users/email/${URL}',
+  verificationURL: 'https://peaceful-fjord-19927.herokuapp.com/users/email/${URL}',
   persistentUserModel: User,
   tempUserModel: TempUser,
   tempUserCollection: 'splash_tempusers',
