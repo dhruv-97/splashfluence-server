@@ -19,12 +19,12 @@ nev.configure({
   transportOptions: {
       service: 'Gmail',
       auth: {
-          user: 'abhishekmishra6000@gmail.com',
-          pass: '6000mishra'
+          user: 'splashfluence@gmail.com',
+          pass: 'lvksleoskqdptqbm'
       }
   },
   verifyMailOptions: {
-      from: 'Do Not Reply <abhishekmishra6000@gmail.com>',
+      from: 'Do Not Reply <splashfluence@gmail.com>',
       subject: 'Please confirm account',
       html: 'Click the following link to confirm your account:</p><p>${URL}</p>',
       text: 'Please confirm your account by clicking the following link: ${URL}'
@@ -178,13 +178,13 @@ router.post('/send', function(req,res,next){
     host: 'smtp.gmail.com',
     service: 'Gmail',
     auth: {
-      user: 'abhishekmishra6000@gmail.com',
-      pass: '6000mishra'
+      user: 'splashfluence@gmail.com',
+      pass: 'lvksleoskqdptqbm'
     }
   });
   var mailOptions = {
-    to: 'abhishekmishra6000@gmail.com',
-    from: 'abhishekmishra6000@gmail.com',
+    to: 'splashfluence@gmail.com',
+    from: 'splashfluence@gmail.com',
     subject: 'Node.js Password Reset',
     text: req.body.name + 'contacted SplashFluence with the following message:-\n' + req.body.message
     + '\nHis email is:-' +req.body.email
@@ -231,13 +231,13 @@ router.post('/forgot', function(req,res,next){
         host: 'smtp.gmail.com',
         service: 'Gmail',
         auth: {
-          user: 'abhishekmishra6000@gmail.com',
-          pass: '6000mishra'
+          user: 'splashfluence@gmail.com',
+          pass: 'lvksleoskqdptqbm'
         }
       });
       var mailOptions = {
         to: user.email,
-        from: 'abhishekmishra6000@gmail.com',
+        from: 'splashfluence@gmail.com',
         subject: 'Node.js Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
