@@ -12,7 +12,7 @@ var Verify    = require('./verify');
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
 nev.configure({
-  verificationURL: 'http://13.126.1.165/users/email/${URL}',
+  verificationURL: 'http://splashfluence.com/users/email/${URL}',
   persistentUserModel: User,
   tempUserModel: TempUser,
   tempUserCollection: 'splash_tempusers',
@@ -24,10 +24,10 @@ nev.configure({
       }
   },
   verifyMailOptions: {
-      from: 'Do Not Reply <splashfluence@gmail.com>',
-      subject: 'Please confirm account',
-      html: 'Click the following link to confirm your account:</p><p>${URL}</p>',
-      text: 'Please confirm your account by clicking the following link: ${URL}'
+      from: 'SplashFluence <splashfluence@gmail.com>',
+      subject: 'Please verify account',
+      html: 'Click the following link to verify your account:</p><p>${URL}</p>',
+      text: 'Please verify your account by clicking the following link: ${URL}'
   }
 }, function(error, options){
 });
@@ -185,7 +185,7 @@ router.post('/send', function(req,res,next){
   var mailOptions = {
     to: 'splashfluence@gmail.com',
     from: 'splashfluence@gmail.com',
-    subject: 'Node.js Password Reset',
+    subject: 'Splashfluence Password Reset',
     text: req.body.name + 'contacted SplashFluence with the following message:-\n' + req.body.message
     + '\nHis email is:-' +req.body.email
   };
@@ -241,7 +241,7 @@ router.post('/forgot', function(req,res,next){
         subject: 'Node.js Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'http://splashfluence.com/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {

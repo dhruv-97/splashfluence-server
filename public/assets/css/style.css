@@ -33,6 +33,13 @@ video#bgvid{position:absolute;min-width:100%;min-height:inherit;width:100%;heigh
 .overlay-desc{background:rgba(0,0,0,0);position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;}
 .mobgraph{visibility:hidden;display:none;}
 .center-pills{display:inline-block;}
+.ulcenter{
+  display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
+.ulphone{
+  margin-left:20%;
+}
 @media only screen and (max-width:500px){.main-header{height:400px;}
 .bg-color{height:400px;}
 #first{top:40%;font-size:40px;position:relative;}
@@ -52,6 +59,9 @@ video#bgvid{position:absolute;min-width:100%;min-height:inherit;width:100%;heigh
   background: url('../images/preloader.gif') no-repeat center center;
 }
 
+.button{
+  width:90%;
+}
 #content {
   display: none;
 }

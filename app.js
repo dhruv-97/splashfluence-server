@@ -58,7 +58,9 @@ app.use(function (req, res, next) {
 app.use('/users', userRouter);
 app.use('/camp',campRouter);
 app.use('/influencer', influencerRouter);
-
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, '/public', 'index.html'));
+});
 
 
 
