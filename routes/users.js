@@ -123,7 +123,7 @@ router.post('/register', function(req, res) {
     });
     })
     .catch(function(err){
-      console.log(err);
+      res.status(500).json({staus: "This user already exists"});
     });
     
 });
@@ -173,6 +173,7 @@ router.post('/update', function(req, res, next) {
       res.json(user);
   })
 });
+
 router.post('/send', function(req,res,next){
   var smtpTransport = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -193,6 +194,26 @@ router.post('/send', function(req,res,next){
     res.send('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
   });  
 });
+router.post('/contact', function(req,res,next){
+  var smtpTransport = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    service: 'Gmail',
+    auth: {
+      user: 'splashfluence@gmail.com',
+      pass: 'lvksleoskqdptqbm'
+    }
+  });
+  var mailOptions = {
+    to: 'splashfluence@gmail.com',
+    from: 'splashfluence@gmail.com',
+    subject: 'Splashfluence Influencer Inquiry',
+    text: req.body.name + 'contacted SplashFluence with the following message:-\n' + req.body.message
+    + '\nHis email is:-' +req.body.email
+  };
+  smtpTransport.sendMail(mailOptions, function(err) {
+    res.status(200).json({success:true});
+  });  
+});
 router.post('/resetpass/:token', function(req,res,next){
   User.findOneAndUpdate({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },
     {password:req.body.password},function(err,user){
@@ -200,7 +221,7 @@ router.post('/resetpass/:token', function(req,res,next){
         res.status(500).json({message: 'User does not exist'});
       }
       if(err) throw(err);
-      res.send('done');
+      res.status(200).json({successful:true});
   });
 });
 router.post('/forgot', function(req,res,next){
@@ -238,7 +259,7 @@ router.post('/forgot', function(req,res,next){
       var mailOptions = {
         to: user.email,
         from: 'splashfluence@gmail.com',
-        subject: 'Node.js Password Reset',
+        subject: 'SplashFluence Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
           'http://splashfluence.com/reset/' + token + '\n\n' +
