@@ -59,6 +59,11 @@ app.use('/users', userRouter);
 app.use('/camp',campRouter);
 app.use('/influencer', influencerRouter);
 app.use(function(req, res) {
+  if (req.url.indexOf("/assets/") === 0) {
+    res.setHeader("Cache-Control", "public, max-age=2592000");
+    res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+  }
+  next();
   res.sendFile(path.join(__dirname, '/public', 'index.html'));
 });
 
