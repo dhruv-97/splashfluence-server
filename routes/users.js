@@ -11,7 +11,6 @@ var Influencer = require('../models/influencer');
 var Verify    = require('./verify');
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
-var EmailTemplate = require('email-templates').EmailTemplate;
 var smtpTransport = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   service: 'Gmail',
