@@ -63,7 +63,6 @@ app.use(function(req, res) {
     res.setHeader("Cache-Control", "public, max-age=2592000");
     res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
   }
-  next();
   res.sendFile(path.join(__dirname, '/public', 'index.html'));
 });
 
