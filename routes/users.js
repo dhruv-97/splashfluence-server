@@ -1400,7 +1400,7 @@ router.get('/email/:url', function(req, res, next) {
     if (user) {
         // optional
         nev.sendConfirmationEmail(user['email_field_name'], function(err, info) {
-          res.send("Email was verified. You can now login");    
+          res.redirect("http://splashfluence.com/brandlogin");    
         });
     }
 
