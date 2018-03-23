@@ -1192,63 +1192,72 @@ router.post('/new', function(req,res) {
 })
 router.post('/register', function(req, res) {
   console.log(req.body);
-  let promise = new Promise(function(resolve,reject){
-    if(req.body.brand==true){
-      Brand.create({brand_name:req.body.brand_name, brand_url:req.body.brand_name}, function(err, brand){
-        if(err) reject(err);
-        else{
-          console.log("Brand created");
-          resolve(brand);
-        }
-      })      
-    }
-    else {
-      Influencer.create({facebook: req.body.username, twitter: req.body.twitter, instagram: req.body.instagram,
-      youtube:req.body.youtube, blog: req.body.blog, category: req.body.category,
-      location: req.body.location}, function(err, influencer){
-        if(err) reject(err);
-        else{
-          console.log("Influencer created");
-          resolve(influencer);
-        }  
-      })
-    }
-  })
-    promise.then(function(result){
-      if(req.body.brand == true)
-        req.body.brandRef = result._id;
-      else
-        req.body.influencerRef = result._id;
-      var newUser= User(req.body);
-      nev.createTempUser(newUser, function(err, existingPersistentUser, newTempUser) {
-        // some sort of error
-        if (err)
-          return res.status(500).json({status: 'Registration Unsuccessful!'});  
-    
-        // user already exists in persistent collection...
-        if (existingPersistentUser)
-          return res.status(409).json({status: 'User already exists!'});    
-    
-        // a new user
-        if (newTempUser) {
-            var URL = newTempUser[nev.options.URLFieldName];
-            nev.sendVerificationEmail(req.body.email, URL, function(err, info) {
-                if (err)
-                  return res.status(419).json({status: 'Could not send verification email!'}); 
-    
-                return res.status(200).json({status: 'Registration Successful!'});
-            });
-    
-        // user already exists in temporary collection...
-        } else {
-            return res.status(429).json({status: 'Registration Unsuccessful!'});
-        }
-    });
+  User.findOne({username:req.body.username},function(err,obj){
+    if(err)
+      return res.status(500).json({status: 'Registration Unsuccessful!'});
+    if(obj)
+      res.status(409).json({status:"User already exists"});
+    else{
+      let promise = new Promise(function(resolve,reject){
+      if(req.body.brand==true){
+        Brand.create({brand_name:req.body.brand_name, brand_url:req.body.brand_name}, function(err, brand){
+          if(err) reject(err);
+          else{
+            console.log("Brand created");
+            resolve(brand);
+          }
+        })      
+      }
+      else {
+        Influencer.create({facebook: req.body.username, twitter: req.body.twitter, instagram: req.body.instagram,
+        youtube:req.body.youtube, blog: req.body.blog, category: req.body.category,
+        location: req.body.location}, function(err, influencer){
+          if(err) reject(err);
+          else{
+            console.log("Influencer created");
+            resolve(influencer);
+          }  
+        })
+      }
     })
-    .catch(function(err){
-      console.log(err);
-      res.status(500).json({staus: "This user already exists"});
-    });
+      promise.then(function(result){
+        if(req.body.brand == true)
+          req.body.brandRef = result._id;
+        else
+          req.body.influencerRef = result._id;
+        var newUser= User(req.body);
+        nev.createTempUser(newUser, function(err, existingPersistentUser, newTempUser) {
+          // some sort of error
+          if (err)
+            return res.status(500).json({status: 'Registration Unsuccessful!'});  
+      
+          // user already exists in persistent collection...
+          if (existingPersistentUser)
+            return res.status(409).json({status: 'User already exists!'});    
+      
+          // a new user
+          if (newTempUser) {
+              var URL = newTempUser[nev.options.URLFieldName];
+              nev.sendVerificationEmail(req.body.email, URL, function(err, info) {
+                  if (err)
+                    return res.status(419).json({status: 'Could not send verification email!'}); 
+      
+                  return res.status(200).json({status: 'Registration Successful!'});
+              });
+      
+          // user already exists in temporary collection...
+          } else {
+              return res.status(429).json({status: 'Registration Unsuccessful!'});
+          }
+      });
+      })
+      .catch(function(err){
+        console.log(err);
+        res.status(500).json({staus: "This user already exists"});
+      });
+  }
+  });
+  
     
 });
 router.post('/login', function(req, res, next) {
