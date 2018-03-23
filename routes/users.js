@@ -1246,6 +1246,7 @@ router.post('/register', function(req, res) {
     });
     })
     .catch(function(err){
+      console.log(err);
       res.status(500).json({staus: "This user already exists"});
     });
     
