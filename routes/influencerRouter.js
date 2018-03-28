@@ -67,14 +67,14 @@ influencerRouter.route('/:influencerId')
                     host: 'smtp.gmail.com',
                     service: 'Gmail',
                     auth: {
-                      user: 'abhishekmishra6000@gmail.com',
-                      pass: '6000mishra'
+                      user: 'splashfluence@gmail.com',
+                      pass: 'lvksleoskqdptqbm'
                     }
                   });
                   console.log(camp.email);
                   var mailOptions = {
                     to: campaign.email,
-                    from: 'abhishekmishra6000@gmail.com',
+                    from: 'splashfluence@gmail.com',
                     subject: 'Congratulations!! A new Influencer has applied',
                     text: user.username + 'has applied for the campaign ' + campaign.name
                     + '\nName:-' +user.username
