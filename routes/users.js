@@ -1261,24 +1261,48 @@ router.post('/register', function(req, res) {
     
 });
 router.post('/login', function(req, res, next) {
-  User.findOne({username:req.body.username},function(err,user){
-    if(user==null)
-      res.status(500).json({status:"Username doesnt exist"});
-    if(user.password == req.body.password){
-      var token = Verify.getToken(user);
-      res.status(200).json({
-        status: 'Login successful!',
-        success: true,
-        token: token,
-        username: user.username,
-        brand: user.brand,
-        brandRef: user.brandRef,
-        influencerRef: user.influencerRef
-      });
-    }
-    else
-      res.status(500).json({status:"Incorrect password"});
-  })
+  if(req.body.username.indexOf('@')==-1){
+    User.findOne({username:req.body.username},function(err,user){
+      if(user==null)
+        res.status(500).json({status:"Username doesnt exist"});
+      if(user.password == req.body.password){
+        var token = Verify.getToken(user);
+        res.status(200).json({
+          status: 'Login successful!',
+          success: true,
+          token: token,
+          username: user.username,
+          brand: user.brand,
+          brandRef: user.brandRef,
+          influencerRef: user.influencerRef
+        });
+      }
+      else
+        res.status(500).json({status:"Incorrect password"});
+    })
+  }
+  else {
+    User.findOne({email:req.body.username},function(err,user){
+      if(user==null)
+        res.status(500).json({status:"Username doesnt exist"});
+      if(user.password == req.body.password){
+        var token = Verify.getToken(user);
+        res.status(200).json({
+          status: 'Login successful!',
+          success: true,
+          token: token,
+          username: user.username,
+          brand: user.brand,
+          brandRef: user.brandRef,
+          influencerRef: user.influencerRef
+        });
+      }
+      else
+        res.status(500).json({status:"Incorrect password"});
+    })
+
+  }
+  
 });
 router.post('/update', function(req, res, next) {
   User.findOneAndUpdate({username:req.body.username},
