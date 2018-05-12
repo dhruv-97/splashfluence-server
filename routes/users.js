@@ -79,7 +79,7 @@ router.post('/hashpassword', function(req, res) {
   req.body.forEach(element => {
     bcrypt.hash(element.password, 8, function(err, hash) {
       element.password = hash;
-      Users.create(element, function(err,user){
+      User.create(element, function(err,user){
         if(err) res.json({result:"Algorithm has failed miserably"})
         else
           console.log("User created");
