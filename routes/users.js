@@ -75,7 +75,19 @@ router.get('/', function(req, res, next) {
 router.get('/redirect',Verify.verifyOrdinaryUser, function(req, res, next) {
   res.send('Authenticated');
 });
-
+router.post('/hashpassword', function(req, res) {
+  req.body.forEach(element => {
+    bcrypt.hash(element.password, 8, function(err, hash) {
+      element.password = hash;
+      Users.create(element, function(err,user){
+        if(err) res.json({result:"Algorithm has failed miserably"})
+        else
+          console.log("User created");
+      })
+    });
+  });
+  res.status(200).json({done:"All users created successfully"});
+})
 router.post('/register', function(req, res) {
   console.log(req.body);
   User.findOne({username:req.body.username},function(err,obj){
