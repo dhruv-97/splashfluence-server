@@ -8,6 +8,7 @@
   "dependencies": {
     "async": "^2.5.0",
     "aws-sdk": "^2.70.0",
+    "bcrypt": "^2.0.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.16.0",
     "cheerio": "^0.22.0",
